@@ -7,15 +7,10 @@ const
 
     User = require('../models/User.js')
 
-
 function isLoggedIn( req, res, next){
     if(req.isAuthenticated()) return next()
     res.redirect('/login')
 }
-
-
-
-
 
 // LOGIN -------- 
 userRouter.get('/login', (req, res) => {
@@ -37,9 +32,10 @@ userRouter.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/signup'
 }) )
 
-// PROFILE ------ SHOW --------- 
-userRouter.get('/user/:id', isLoggedIn, (req, res) => {
-                        //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
+// PROFILE ------- 
+userRouter.get('/profile', isLoggedIn, (req, res) => {
+
+    //^^^^^^^^^^^^^^ checks middleware for Logged-in, if True, continue to 'NEXT'
     res.render('profile', {user: req.user})
 })
 
@@ -70,9 +66,6 @@ userRouter.get('/logout', (req, res) => {
     req.logout()
     res.redirect('/')
 })
-
-
-
 
 module.exports = userRouter
 
