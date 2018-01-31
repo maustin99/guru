@@ -15,7 +15,7 @@ const
   //userRouter = new express.Router(),
   Guru = require('./models/Guru.js'),
   Activity = require('./models/Activity.js')
-  indexRoutes = require('./routes/index.js')
+  indexRoutes = require('./routes/users.js')
 
 // environment port
 const
